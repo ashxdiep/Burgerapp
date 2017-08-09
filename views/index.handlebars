@@ -1,0 +1,59 @@
+
+<h1> ALL YOU CAN EAT BURGERS </h1>
+
+<div class = "container">
+
+  <div class = "row">
+    <div class = "col-md-6 eat">
+      <h2> Eat da burger </h2>
+
+      <ul>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+          <li>
+            {{this.burger_name}}
+            <!-- update burger whenever devoured -->
+            <form action = "/{{this.id}}?_method=PUT" method="POST">
+              <input type = "hidden" name = "name" value ="{{this.burger_name}}">
+              <button type = "submit"> SCARF </button>
+            </form>
+          </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class = "col-md-6 poop">
+      <h3> Poop da burger </h3>
+
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li>
+              {{this.burger_name}}
+
+              <form action= "/{{this.id}}?_method=DELETE" method="POST">
+                <button type = "submit">Brain gotta poop</button>
+              </form>
+           </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+
+  <!-- create a burger to eat form  -->
+  <div class = "row">
+    <div class = "col-md-12">
+      <h3>Create your own burger! </h3>
+
+      <form class = "create-burger" action = "/" method = "POST">
+        <div class = "make-burger">
+          <label> Burger Name: </label>
+          <input type = "text" id = "newburger" name= "name">
+        </div>
+        <button type = "submit"> Add Burger </button>
+      </form>
+    </div>
+  </div>
+</div>
